@@ -5,19 +5,18 @@
  * License : Simplified BSD
  * 
  * Description:
- * 	Basic structure for an event handler.
+ * 	The enumeration for event results.
  */
 
 using System;
 
 namespace EventSharp
 {
-	public class EventHandler
+	public enum EventResult
 	{
-		public virtual EventResult OnEvent(Event evt)
-		{
-			return EventResult.IGNORED;
-		}
+		IGNORED,
+		SUCCESS,
+		FAIL
 	}
 }
 

@@ -1,7 +1,7 @@
 ﻿
 /*
  * Author : Samuel "MrOverkill" Meyers
- * Last Modified : 01/05/2015
+ * Last Modified : 01/06/2015
  * License : Simplified BSD
  * 
  * Description:
@@ -29,21 +29,25 @@ namespace EventSharp
 			EnsureHandlers ();
 
 			if (evthnd != null) {
-				handlers += evthnd;
+				handlers.Add(evthnd);
 			}
 		}
 
-		public static void RaiseEvent(Event evt)
+		public static List<EventResult> RaiseEvent(Event evt)
 		{
 			EnsureHandlers ();
 
+			List<EventResult> results = new List<EventResult> ();
+
 			if (evt == null) {
-				return;
+				return results;
 			}
 
 			foreach (EventHandler handler in handlers) {
-				handler.OnEvent (evt);
+				results.Add(handler.OnEvent (evt));
 			}
+
+			return results;
 		}
 	}
 }
